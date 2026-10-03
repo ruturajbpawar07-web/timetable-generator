@@ -1,0 +1,17 @@
+code,name,department,designation,max_per_day,max_per_week,min_per_week,max_consecutive,subjects
+F01,Prof. Anil Sharma,CE,Professor,5,18,10,3,CE301;CE201;CE302
+F02,Prof. Sunita Patil,CE,Associate Professor,5,18,10,3,CE301;CE305;CE304
+F03,Dr. Rajesh Kulkarni,CE,Professor,5,18,10,3,CE302;CE303;CE403
+F04,Prof. Meera Joshi,CE,Assistant Professor,5,20,10,3,CE201;CE203;IT204
+F05,Dr. Vikram Deshmukh,CE,Professor,5,18,10,3,CE401;CE402;CE405;IT304
+F06,Prof. Neha Kapoor,CE,Assistant Professor,5,20,10,3,CE402;CE401;CE201
+F07,Prof. Amit Verma,CE,Assistant Professor,5,20,10,3,CE204;CE305
+F08,Dr. Pooja Nair,CE,Associate Professor,5,18,10,3,CE304;CE404;CE303
+F09,Prof. Sameer Kale,CE,Assistant Professor,5,20,12,3,CE202;ET204
+F10,Prof. Kavita Rao,CE,Assistant Professor,5,20,10,3,CE203;CE201;CE403;CE302
+F11,Prof. Rahul Mehta,IT,Associate Professor,5,18,10,3,CE301;IT304;IT204;CE303
+F12,Prof. Sneha Iyer,IT,Assistant Professor,5,20,10,3,IT203;CE205;CE201
+F13,Prof. Arjun Pillai,IT,Assistant Professor,5,20,10,3,CE305;IT204;CE203
+F14,Dr. Sanjay Gupta,ENTC,Professor,4,18,12,3,ET201;ET203
+F15,Prof. Priya Menon,ENTC,Assistant Professor,5,20,10,3,ET202;CE205;ET203
+F16,Prof. Deepak Shinde,ENTC,Assistant Professor,5,20,12,3,ET204;CE202;ET201

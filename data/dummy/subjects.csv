@@ -1,0 +1,23 @@
+code,name,department,semester,credits,lecture_sessions_per_week,tutorial_sessions_per_week,practical_sessions_per_week,practical_duration_periods,lab_type,is_core,morning_preferred
+CE201,Data Structures,CE,3,4,4,0,1,2,COMPUTER,1,0
+CE202,Discrete Mathematics,CE,3,4,3,1,0,0,,1,1
+CE203,Object Oriented Programming,CE,3,4,3,0,1,2,COMPUTER,0,0
+CE204,Computer Graphics,CE,3,3,3,0,0,0,,0,0
+CE205,Digital Electronics,CE,3,3,3,0,0,0,,0,0
+CE301,Database Management Systems,CE,5,5,4,0,1,2,COMPUTER,1,0
+CE302,Operating Systems,CE,5,4,4,0,0,0,,1,1
+CE303,Computer Networks,CE,5,3,3,0,0,0,,0,0
+CE304,Software Engineering,CE,5,3,3,0,0,0,,0,0
+CE305,Web Technology,CE,5,3,2,0,1,2,COMPUTER,0,0
+CE401,Artificial Intelligence,CE,7,4,3,0,1,2,COMPUTER,1,1
+CE402,Machine Learning,CE,7,4,3,0,1,2,COMPUTER,1,0
+CE403,Cloud Computing,CE,7,3,3,0,0,0,,0,0
+CE404,Information Security,CE,7,3,3,0,0,0,,0,0
+CE405,Natural Language Processing (Elective),CE,7,3,3,0,0,0,,0,0
+IT203,Computer Organization,IT,3,3,3,0,0,0,,0,0
+IT204,Python Programming,IT,3,3,2,0,1,2,COMPUTER,0,0
+IT304,Data Analytics,IT,5,3,3,0,0,0,,0,0
+ET201,Signals & Systems,ENTC,3,4,4,0,0,0,,1,1
+ET202,Electronic Devices & Circuits,ENTC,3,4,3,0,1,2,ELECTRONICS,1,0
+ET203,Network Theory,ENTC,3,3,3,0,0,0,,0,0
+ET204,Engineering Mathematics III,ENTC,3,4,3,1,0,0,,1,1

@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+sqlalchemy
+ortools
+openpyxl
+pytest
+httpx
+# psycopg[binary]   # uncomment for PostgreSQL (set DATABASE_URL)

@@ -1,0 +1,28 @@
+key,value,description
+college_name,Dream Institute of Technology,Institution name
+academic_year,2026-27,Current academic year
+faculty_gap_penalty,5,Penalty per idle period sandwiched in a faculty day
+student_gap_penalty,4,Penalty per idle period sandwiched in a class day
+same_subject_same_day_penalty,8,Penalty per extra session of a subject on one day
+faculty_preference_bonus,3,Bonus per period inside a faculty preferred slot
+morning_preference_bonus,2,Bonus when a morning-preferred subject is before the break
+faculty_consecutive_penalty,6,Penalty when faculty exceed their max consecutive periods
+student_consecutive_penalty,4,Penalty when students exceed student_max_consecutive
+student_max_consecutive,4,Consecutive periods allowed for students before penalty
+core_consecutive_penalty,3,Penalty for two core subjects back to back
+faculty_daily_balance_penalty,2,Penalty per period of a faculty member's busiest day
+student_daily_balance_penalty,2,Penalty per period of a class's busiest day
+first_last_period_fairness_penalty,2,Penalty on the max first/last periods any one faculty gets
+room_capacity_waste_penalty,1,Penalty per 10 empty seats in the chosen room
+home_room_bonus,2,Bonus when a class lecture uses its home classroom
+max_same_subject_per_day,2,HARD cap: sessions of one subject per class per day
+solver_time_limit_seconds,20,CP-SAT time limit
+sub_same_subject_same_class,50,Substitute ranking: already teaches this subject to this class
+sub_same_subject_same_year,25,Substitute ranking: teaches this subject to the same year
+sub_same_subject,15,Substitute ranking: teaches this subject elsewhere
+sub_teaches_class,15,Substitute ranking: already teaches this class
+sub_daily_load_weight,4,Substitute ranking: per free period left today
+sub_weekly_load_weight,1,Substitute ranking: per free period left this week
+sub_consecutive_penalty,10,Substitute ranking: penalty if it creates a long consecutive run
+sub_preferred_slot_bonus,5,Substitute ranking: inside candidate's preferred time
+substitute_same_department_only,0,1 = substitutes must be from the class's department

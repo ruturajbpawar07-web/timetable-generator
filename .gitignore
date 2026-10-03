@@ -1,0 +1,4 @@
+backend/.venv/
+backend/timetable.db
+__pycache__/
+.pytest_cache/

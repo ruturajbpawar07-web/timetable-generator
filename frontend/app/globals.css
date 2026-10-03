@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+:root {
+  --series-1: #2a78d6;
+  --status-warn: #eda100;
+  --status-bad: #e34948;
+  --grid: #e5e7eb;
+  --axis: #6b7280;
+}
+.dark {
+  --series-1: #3987e5;
+  --status-warn: #c98500;
+  --status-bad: #e66767;
+  --grid: #27272a;
+  --axis: #a1a1aa;
+}
+
+body {
+  @apply bg-slate-50 text-slate-900 dark:bg-zinc-950 dark:text-zinc-100;
+}
+
+@media print {
+  aside, header, .no-print { display: none !important; }
+  main { padding: 0 !important; }
+  body { background: white; }
+}
