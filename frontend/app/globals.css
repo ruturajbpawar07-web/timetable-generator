@@ -24,6 +24,12 @@
 
 body {
   @apply bg-slate-50 text-slate-900 dark:bg-zinc-950 dark:text-zinc-100;
+  /* soft colour wash behind the content */
+  background-image:
+    radial-gradient(60rem 30rem at 100% -10%, rgb(139 92 246 / 0.08), transparent 60%),
+    radial-gradient(50rem 25rem at -10% 10%, rgb(14 165 233 / 0.07), transparent 60%),
+    radial-gradient(40rem 20rem at 50% 110%, rgb(236 72 153 / 0.05), transparent 60%);
+  background-attachment: fixed;
 }
 
 @media print {

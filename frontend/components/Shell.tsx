@@ -10,21 +10,21 @@ import { Toaster, cx } from "./ui";
 import { useMeta } from "@/lib/api";
 
 const NAV = [
-  { href: "/", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/timetable", label: "Timetable", icon: CalendarDays },
-  { href: "/generate", label: "Generate Timetable", icon: Sparkles },
-  { href: "/faculty", label: "Faculty", icon: Users },
-  { href: "/classes", label: "Classes", icon: UsersRound },
-  { href: "/subjects", label: "Subjects", icon: BookOpen },
-  { href: "/rooms", label: "Rooms & Labs", icon: DoorOpen },
-  { href: "/substitutions", label: "Substitutions", icon: UserCog },
-  { href: "/absences", label: "Absences", icon: CalendarX },
-  { href: "/conflicts", label: "Conflicts", icon: AlertTriangle },
-  { href: "/workload", label: "Workload", icon: GaugeCircle },
-  { href: "/analytics", label: "Analytics", icon: BarChart3 },
-  { href: "/assistant", label: "Smart Assistant", icon: Bot },
-  { href: "/audit", label: "Audit Log", icon: History },
-  { href: "/settings", label: "Settings", icon: Settings },
+  { href: "/", label: "Dashboard", color: "text-indigo-500", icon: LayoutDashboard },
+  { href: "/timetable", label: "Timetable", color: "text-sky-500", icon: CalendarDays },
+  { href: "/generate", label: "Generate Timetable", color: "text-violet-500", icon: Sparkles },
+  { href: "/faculty", label: "Faculty", color: "text-teal-500", icon: Users },
+  { href: "/classes", label: "Classes", color: "text-orange-500", icon: UsersRound },
+  { href: "/subjects", label: "Subjects", color: "text-pink-500", icon: BookOpen },
+  { href: "/rooms", label: "Rooms & Labs", color: "text-cyan-500", icon: DoorOpen },
+  { href: "/substitutions", label: "Substitutions", color: "text-emerald-500", icon: UserCog },
+  { href: "/absences", label: "Absences", color: "text-rose-500", icon: CalendarX },
+  { href: "/conflicts", label: "Conflicts", color: "text-red-500", icon: AlertTriangle },
+  { href: "/workload", label: "Workload", color: "text-amber-500", icon: GaugeCircle },
+  { href: "/analytics", label: "Analytics", color: "text-blue-500", icon: BarChart3 },
+  { href: "/assistant", label: "Smart Assistant", color: "text-fuchsia-500", icon: Bot },
+  { href: "/audit", label: "Audit Log", color: "text-slate-500", icon: History },
+  { href: "/settings", label: "Settings", color: "text-zinc-500", icon: Settings },
 ];
 
 export default function Shell({ children }: { children: React.ReactNode }) {
@@ -47,19 +47,19 @@ export default function Shell({ children }: { children: React.ReactNode }) {
       <aside className={cx("fixed inset-y-0 left-0 z-40 w-60 shrink-0 border-r border-slate-200 bg-white transition-transform dark:border-zinc-800 dark:bg-zinc-900 lg:sticky lg:top-0 lg:h-screen lg:translate-x-0",
         open ? "translate-x-0" : "-translate-x-full")}>
         <div className="flex h-14 items-center gap-2 border-b border-slate-100 px-4 dark:border-zinc-800">
-          <div className="grid size-8 place-items-center rounded-lg bg-indigo-600 text-white"><CalendarDays className="size-4" /></div>
+          <div className="grid size-8 place-items-center rounded-lg bg-gradient-to-br from-indigo-500 via-violet-500 to-fuchsia-500 text-white shadow-sm"><CalendarDays className="size-4" /></div>
           <div className="leading-tight">
             <div className="text-sm font-semibold">Dream Timetable</div>
             <div className="text-[11px] text-slate-500 dark:text-zinc-400">{meta?.academic_year ?? "…"}</div>
           </div>
         </div>
         <nav className="h-[calc(100vh-3.5rem)] space-y-0.5 overflow-y-auto p-2">
-          {NAV.map(({ href, label, icon: Icon }) => (
+          {NAV.map(({ href, label, color, icon: Icon }) => (
             <Link key={href} href={href}
               className={cx("flex items-center gap-2.5 rounded-lg px-3 py-2 text-sm transition",
-                active(href) ? "bg-indigo-50 font-medium text-indigo-700 dark:bg-indigo-950 dark:text-indigo-300"
+                active(href) ? "bg-gradient-to-r from-indigo-600 to-violet-600 font-medium text-white shadow-sm shadow-indigo-500/30"
                   : "text-slate-600 hover:bg-slate-50 dark:text-zinc-400 dark:hover:bg-zinc-800")}>
-              <Icon className="size-4" />{label}
+              <Icon className={cx("size-4", active(href) ? "text-white" : color)} />{label}
             </Link>
           ))}
         </nav>

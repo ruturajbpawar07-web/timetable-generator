@@ -7,14 +7,14 @@ import { Badge, Button, Modal, Reason, cx, toast } from "./ui";
 
 // soft subject colours (literal class names so Tailwind keeps them)
 const COLORS = [
-  "bg-blue-50 border-blue-200 text-blue-950 dark:bg-blue-950/60 dark:border-blue-900 dark:text-blue-100",
-  "bg-emerald-50 border-emerald-200 text-emerald-950 dark:bg-emerald-950/60 dark:border-emerald-900 dark:text-emerald-100",
-  "bg-amber-50 border-amber-200 text-amber-950 dark:bg-amber-950/60 dark:border-amber-900 dark:text-amber-100",
-  "bg-violet-50 border-violet-200 text-violet-950 dark:bg-violet-950/60 dark:border-violet-900 dark:text-violet-100",
-  "bg-rose-50 border-rose-200 text-rose-950 dark:bg-rose-950/60 dark:border-rose-900 dark:text-rose-100",
-  "bg-cyan-50 border-cyan-200 text-cyan-950 dark:bg-cyan-950/60 dark:border-cyan-900 dark:text-cyan-100",
-  "bg-lime-50 border-lime-200 text-lime-950 dark:bg-lime-950/60 dark:border-lime-900 dark:text-lime-100",
-  "bg-fuchsia-50 border-fuchsia-200 text-fuchsia-950 dark:bg-fuchsia-950/60 dark:border-fuchsia-900 dark:text-fuchsia-100",
+  "bg-blue-50 border-blue-200 border-l-blue-500 text-blue-950 dark:bg-blue-950/60 dark:border-blue-900 dark:text-blue-100",
+  "bg-emerald-50 border-emerald-200 border-l-emerald-500 text-emerald-950 dark:bg-emerald-950/60 dark:border-emerald-900 dark:text-emerald-100",
+  "bg-amber-50 border-amber-200 border-l-amber-500 text-amber-950 dark:bg-amber-950/60 dark:border-amber-900 dark:text-amber-100",
+  "bg-violet-50 border-violet-200 border-l-violet-500 text-violet-950 dark:bg-violet-950/60 dark:border-violet-900 dark:text-violet-100",
+  "bg-rose-50 border-rose-200 border-l-rose-500 text-rose-950 dark:bg-rose-950/60 dark:border-rose-900 dark:text-rose-100",
+  "bg-cyan-50 border-cyan-200 border-l-cyan-500 text-cyan-950 dark:bg-cyan-950/60 dark:border-cyan-900 dark:text-cyan-100",
+  "bg-lime-50 border-lime-200 border-l-lime-500 text-lime-950 dark:bg-lime-950/60 dark:border-lime-900 dark:text-lime-100",
+  "bg-fuchsia-50 border-fuchsia-200 border-l-fuchsia-500 text-fuchsia-950 dark:bg-fuchsia-950/60 dark:border-fuchsia-900 dark:text-fuchsia-100",
 ];
 const COMP: Record<string, string> = { L: "Lecture", T: "Tutorial", P: "Practical" };
 
@@ -133,7 +133,7 @@ function EntryCard({ e, view, editable, onClick }: { e: Any; view: View; editabl
   const style = transform ? { transform: `translate3d(${transform.x}px, ${transform.y}px, 0)`, zIndex: 50 } : undefined;
   return (
     <button ref={setNodeRef} style={style} {...listeners} {...attributes} onClick={onClick}
-      className={cx("pointer-events-auto flex min-w-0 flex-1 flex-col rounded-lg border px-2 py-1.5 text-left text-[11px] leading-tight shadow-xs transition hover:shadow-md",
+      className={cx("pointer-events-auto flex min-w-0 flex-1 flex-col rounded-lg border border-l-4 px-2 py-1.5 text-left text-[11px] leading-tight shadow-xs transition hover:shadow-md",
         COLORS[e.subject_id % COLORS.length], editable && !e.locked && "cursor-grab active:cursor-grabbing", isDragging && "opacity-80 shadow-lg ring-2 ring-indigo-400")}
       title={`${e.subject} · ${e.faculty} · ${e.room} · ${e.class}${e.batch ? ` (${e.batch})` : ""}`}>
       <div className="flex items-center gap-1">

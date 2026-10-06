@@ -4,14 +4,32 @@ import { AlertTriangle, CheckCircle2, Info, Loader2, X, XCircle } from "lucide-r
 
 export const cx = (...c: (string | false | null | undefined)[]) => c.filter(Boolean).join(" ");
 
-export function Card({ title, action, children, className }: {
-  title?: React.ReactNode; action?: React.ReactNode; children: React.ReactNode; className?: string;
+// Accent palette: literal class strings so Tailwind keeps them. Picked per label so each tile/card gets a
+// stable colour; semantic tones (good/warn/bad) override it.
+const ACCENTS = {
+  indigo: { chip: "bg-indigo-100 text-indigo-600 dark:bg-indigo-950 dark:text-indigo-300", bar: "from-indigo-500 to-violet-500", dot: "bg-indigo-500" },
+  sky: { chip: "bg-sky-100 text-sky-600 dark:bg-sky-950 dark:text-sky-300", bar: "from-sky-400 to-blue-500", dot: "bg-sky-500" },
+  violet: { chip: "bg-violet-100 text-violet-600 dark:bg-violet-950 dark:text-violet-300", bar: "from-violet-500 to-fuchsia-500", dot: "bg-violet-500" },
+  teal: { chip: "bg-teal-100 text-teal-600 dark:bg-teal-950 dark:text-teal-300", bar: "from-teal-400 to-cyan-500", dot: "bg-teal-500" },
+  orange: { chip: "bg-orange-100 text-orange-600 dark:bg-orange-950 dark:text-orange-300", bar: "from-orange-400 to-pink-500", dot: "bg-orange-500" },
+  pink: { chip: "bg-pink-100 text-pink-600 dark:bg-pink-950 dark:text-pink-300", bar: "from-pink-500 to-rose-500", dot: "bg-pink-500" },
+  emerald: { chip: "bg-emerald-100 text-emerald-600 dark:bg-emerald-950 dark:text-emerald-300", bar: "from-emerald-400 to-teal-500", dot: "bg-emerald-500" },
+  amber: { chip: "bg-amber-100 text-amber-600 dark:bg-amber-950 dark:text-amber-300", bar: "from-amber-400 to-orange-500", dot: "bg-amber-500" },
+  rose: { chip: "bg-rose-100 text-rose-600 dark:bg-rose-950 dark:text-rose-300", bar: "from-rose-500 to-red-500", dot: "bg-rose-500" },
+};
+type Accent = keyof typeof ACCENTS;
+const ROTATION: Accent[] = ["indigo", "sky", "violet", "teal", "orange", "pink"];
+const pick = (key: string): Accent => ROTATION[[...key].reduce((h, c) => (h * 31 + c.charCodeAt(0)) >>> 0, 7) % ROTATION.length];
+
+export function Card({ title, action, children, className, accent }: {
+  title?: React.ReactNode; action?: React.ReactNode; children: React.ReactNode; className?: string; accent?: Accent;
 }) {
+  const a = ACCENTS[accent ?? pick(typeof title === "string" ? title : "card")];
   return (
-    <section className={cx("rounded-xl border border-slate-200 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900", className)}>
+    <section className={cx("rounded-xl border border-slate-200/80 bg-white shadow-sm dark:border-zinc-800 dark:bg-zinc-900", className)}>
       {title && (
         <div className="flex items-center justify-between gap-3 border-b border-slate-100 px-4 py-3 dark:border-zinc-800">
-          <h2 className="text-sm font-semibold">{title}</h2>
+          <h2 className="flex items-center gap-2 text-sm font-semibold"><span className={cx("h-4 w-1 shrink-0 rounded-full", a.dot)} />{title}</h2>
           {action}
         </div>
       )}
@@ -24,7 +42,7 @@ export function PageHeader({ title, subtitle, actions }: { title: string; subtit
   return (
     <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
       <div>
-        <h1 className="text-2xl font-semibold tracking-tight">{title}</h1>
+        <h1 className="bg-gradient-to-r from-indigo-600 via-violet-600 to-fuchsia-600 bg-clip-text text-2xl font-bold tracking-tight text-transparent dark:from-indigo-300 dark:via-violet-300 dark:to-fuchsia-300">{title}</h1>
         {subtitle && <p className="mt-1 text-sm text-slate-500 dark:text-zinc-400">{subtitle}</p>}
       </div>
       {actions && <div className="no-print flex flex-wrap items-center gap-2">{actions}</div>}
@@ -32,16 +50,18 @@ export function PageHeader({ title, subtitle, actions }: { title: string; subtit
   );
 }
 
-export function Stat({ label, value, hint, icon, tone = "default" }: {
-  label: string; value: React.ReactNode; hint?: string; icon?: React.ReactNode; tone?: "default" | "warn" | "bad" | "good";
+export function Stat({ label, value, hint, icon, tone = "default", accent }: {
+  label: string; value: React.ReactNode; hint?: string; icon?: React.ReactNode; tone?: "default" | "warn" | "bad" | "good"; accent?: Accent;
 }) {
-  const toneCls = { default: "text-slate-500", warn: "text-amber-600", bad: "text-red-600", good: "text-emerald-600" }[tone];
+  const a = ACCENTS[({ good: "emerald", warn: "amber", bad: "rose" } as const)[tone as "good"] ?? accent ?? pick(label)];
   return (
-    <div className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
-      <div className="flex items-center justify-between text-xs font-medium text-slate-500 dark:text-zinc-400">
-        {label}<span className={toneCls}>{icon}</span>
+    <div className="relative overflow-hidden rounded-xl border border-slate-200/80 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900">
+      <div className={cx("absolute inset-x-0 top-0 h-1 bg-gradient-to-r", a.bar)} />
+      <div className="flex items-start justify-between gap-2">
+        <span className="text-xs font-medium text-slate-500 dark:text-zinc-400">{label}</span>
+        <span className={cx("grid size-8 shrink-0 place-items-center rounded-lg", a.chip)}>{icon ?? <span className={cx("size-2 rounded-full", a.dot)} />}</span>
       </div>
-      <div className="mt-2 text-2xl font-semibold tabular-nums">{value}</div>
+      <div className="mt-1 text-2xl font-semibold tabular-nums">{value}</div>
       {hint && <div className="mt-1 text-xs text-slate-500 dark:text-zinc-400">{hint}</div>}
     </div>
   );
@@ -62,7 +82,7 @@ export function Badge({ children, tone = "gray" }: { children: React.ReactNode; 
 export function Button({ variant = "secondary", loading, className, children, ...p }:
   React.ButtonHTMLAttributes<HTMLButtonElement> & { variant?: "primary" | "secondary" | "danger" | "ghost"; loading?: boolean }) {
   const v = {
-    primary: "bg-indigo-600 text-white hover:bg-indigo-700 border-transparent",
+    primary: "bg-gradient-to-r from-indigo-600 to-violet-600 text-white shadow-sm shadow-indigo-500/30 hover:from-indigo-500 hover:to-violet-500 border-transparent",
     secondary: "bg-white text-slate-700 hover:bg-slate-50 border-slate-200 dark:bg-zinc-900 dark:text-zinc-200 dark:border-zinc-700 dark:hover:bg-zinc-800",
     danger: "bg-white text-red-600 hover:bg-red-50 border-red-200 dark:bg-zinc-900 dark:border-red-900 dark:hover:bg-red-950",
     ghost: "border-transparent text-slate-600 hover:bg-slate-100 dark:text-zinc-300 dark:hover:bg-zinc-800",

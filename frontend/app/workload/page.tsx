@@ -5,6 +5,8 @@ import Tip from "@/components/ChartTip";
 import { Badge, Card, ErrorBox, LoadBar, Loading, PageHeader, Stat, Table } from "@/components/ui";
 
 const STATUS_FILL: Record<string, string> = { OK: "var(--series-1)", UNDERLOADED: "var(--status-warn)", OVERLOADED: "var(--status-bad)" };
+// validated categorical slots (blue, orange, aqua); bars are also labelled on the axis
+const DEPT = ["#2a78d6", "#eb6834", "#1baf7a"];
 const axis = { stroke: "var(--axis)", fontSize: 11, tickLine: false };
 
 export default function WorkloadPage() {
@@ -47,7 +49,9 @@ export default function WorkloadPage() {
               <CartesianGrid vertical={false} stroke="var(--grid)" />
               <XAxis dataKey="department" {...axis} /><YAxis {...axis} axisLine={false} width={30} />
               <Tooltip cursor={{ fill: "var(--grid)", opacity: 0.4 }} content={<Tip render={(d: Any) => <>{d.department}: {d.periods} periods</>} />} />
-              <Bar isAnimationActive={false} dataKey="periods" fill="var(--series-1)" radius={[4, 4, 0, 0]} maxBarSize={48} />
+              <Bar isAnimationActive={false} dataKey="periods" radius={[4, 4, 0, 0]} maxBarSize={48}>
+                {data.departments.map((d: Any, i: number) => <Cell key={d.department} fill={DEPT[i % DEPT.length]} />)}
+              </Bar>
             </BarChart>
           </ResponsiveContainer>
         </Card>
