@@ -17,6 +17,7 @@ Two phases:
 """
 from __future__ import annotations
 
+import os
 import time
 from collections import defaultdict
 from dataclasses import replace
@@ -273,7 +274,7 @@ def solve(p: Problem, time_limit: float | None = None, seed: int = 0) -> dict:
 
     solver = cp_model.CpSolver()
     solver.parameters.max_time_in_seconds = time_limit or p.w("solver_time_limit_seconds", 20)
-    solver.parameters.num_workers = 8
+    solver.parameters.num_workers = int(os.getenv("SOLVER_WORKERS", 8))   # lower on small hosts
     solver.parameters.random_seed = seed
     st = solver.Solve(m)
     status = STATUS.get(st, "UNKNOWN")

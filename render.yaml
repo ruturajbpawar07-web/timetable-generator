@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: dream-timetable
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/meta
+    envVars:
+      - key: SOLVER_WORKERS
+        value: "2"

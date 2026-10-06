@@ -1,0 +1,7 @@
+**/node_modules
+**/.next
+backend/.venv
+backend/timetable.db
+**/__pycache__
+.git
+.claude

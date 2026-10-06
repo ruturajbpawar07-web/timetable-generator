@@ -13,8 +13,8 @@ from . import db, services as svc, importer, assistant, export
 from scheduler import validator
 
 
-@asynccontextmanager
-async def lifespan(app):
+def seed():
+    """Fresh DB -> import dummy data, generate and accept a timetable (also run at Docker build)."""
     db.init()
     with db.Session() as s:
         if not s.scalar(select(db.College)):
@@ -23,6 +23,11 @@ async def lifespan(app):
             r = svc.generate(s)
             if r.get("timetable_id"):
                 svc.accept(s, r["timetable_id"])
+
+
+@asynccontextmanager
+async def lifespan(app):
+    seed()
     yield
 
 
